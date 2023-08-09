@@ -19,6 +19,6 @@ https://item.taobao.com/item.htm?spm=a1z10.1-c.w4004-8254529434.3.219189fcMV5dlw
 ![image](review/burner.jpg)
 
 1. Connect Flash Pad to GND
-2. Connect serial wire to TxD and RxD Pads.(If your USB-to-Serial module don't have protective/impendance resistors, apply them onto connecting wire).
+2. Connect serial wire to TxD and RxD Pads.(If your USB-to-Serial module don't have protective/impendance resistors, apply them to serial wires).
 3. Add 3.3V power.
 4. The device will enter flash mode then.
