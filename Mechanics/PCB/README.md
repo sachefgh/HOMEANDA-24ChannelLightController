@@ -8,4 +8,4 @@ To open and edit this PCB Design Project, an installation of Altium Designer 15 
 To check your software compatibility, go to `Help` >> `about` to check your AD build version.
 
 ## Review
-![image](review/overview010.jpg)
+![image](review/overview01.jpg)
