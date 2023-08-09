@@ -12,6 +12,7 @@ To check your software compatibility, go to `Help` >> `about` to check your AD b
 
 ## Program & Burn
 ![image](review/burn01.jpg)
+
 These pads will be used to program and debug the ESP-12 Module. Use a 1.27mm 2x4P clamp to connect:
 
 https://item.taobao.com/item.htm?spm=a1z10.1-c.w4004-8254529434.3.219189fcMV5dlw&id=657520999591
