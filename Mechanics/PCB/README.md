@@ -10,6 +10,11 @@ To check your software compatibility, go to `Help` >> `about` to check your AD b
 ## Review
 ![image](review/overview01.jpg)
 
+## Hardware - About-relays
+
+- Each channel of the module is controlled by a `HF49FD-005-1H11(T)` or  `HF49FD-005-1H12(T)` relay.
+- Relays can either be welded directly to PCB or fix to 4P APAN/G6DN sockets. Purchase link:  https://item.taobao.com/item.htm?spm=a230r.1.14.18.4239215eY7qdyL&id=43279272099&ns=1&abbucket=3#detail
+
 ## Program & Burn
 ![image](review/burn01.jpg)
 
