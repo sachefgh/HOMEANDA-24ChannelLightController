@@ -2,7 +2,6 @@
 .visualgdb/
 .vs/
 .build/
-.Mechanics/PCB/History
 
 # Prerequisites
 *.d
