@@ -1,6 +1,7 @@
 # Dir
 .visualgdb/
 .vs/
+.build/
 
 # Prerequisites
 *.d
