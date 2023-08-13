@@ -33,11 +33,14 @@ static inline void GetsetChipInfo()
 	printf("%dMB %s flash\n", spi_flash_get_chip_size() / (1024 * 1024),
 		   (chip_info.features & CHIP_FEATURE_EMB_FLASH) ? "embedded" : "external");
 	//Get&set MAC address
-	uint8_t mac[6];  //ESP_OK==0
+	
 	#ifdef USE_DEFAULT_EFUSE_MAC
+	uint8_t mac[6];
 	esp_efuse_mac_get_default(mac);
+	//read mac add
+	#else
+	esp_base_mac_addr_set(USER_MAC_ADDR);
 	#endif
-
-	//printf("ESP MAC Address: ")
+	
 	fflush(stdout); //clear
 }
