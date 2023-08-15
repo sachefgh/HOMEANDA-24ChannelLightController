@@ -9,13 +9,14 @@
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "driver/gpio.h"
 #include "esp_system.h"
 #include "esp_spi_flash.h"
 #include "user_configuration.h"
 
 /*Pre-define*/
 static inline void GetsetChipInfo();
-
+static inline void DeviceHardwareInit();
 
 void app_main()
 {
@@ -23,7 +24,7 @@ void app_main()
 	
     esp_restart();
 }
-static inline void GetsetChipInfo() 
+inline void GetsetChipInfo() 
 {
 	esp_chip_info_t chip_info;
 	esp_chip_info(&chip_info);
@@ -44,3 +45,21 @@ static inline void GetsetChipInfo()
 	
 	fflush(stdout); //clear
 }
+
+
+inline void DeviceHardwareInit()
+{
+	//Init device GPIO
+	gpio_config_t gpiosetup =
+		{
+			0x00002820,
+			GPIO_MODE_DEF_OUTPUT,
+			0,0,0
+		};
+	gpio_config(&gpiosetup);
+	//WatchDog settings, managed by RTOS 
+	
+	
+	
+}
+
