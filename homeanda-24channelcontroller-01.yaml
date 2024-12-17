@@ -1,0 +1,744 @@
+# this device can be browsed via http://homeanda-24channelcontroller-01.local
+
+esphome:
+  name: homeanda-24channelcontroller-01
+  friendly_name: HOMEANDA-24channelcontroller-01
+
+esp8266:
+  board: esp12e   # ESP12f is same to ESP12e except for adopting 4-layer PCB design
+  framework: 
+    version: recommended
+  restore_from_flash: False
+  early_pin_init: True
+# Enable logging
+logger:
+  level: WARN
+  esp8266_store_log_strings_in_flash: False
+  baud_rate: 115200
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "sCpAwb0RNlLMN6kU1fa5OUnrCLLlVo8zqX7/mjm8L70="
+ota:
+  - platform: esphome
+    password: "5050b85e8803089989d0cac3f1885f6a"
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  #############################################################
+  reboot_timeout: 10min
+  power_save_mode: NONE # 
+  output_power: 20dB # TX power: From 8.5dB to 20dB############
+  ################## Setup static IP Iddress ##################
+  manual_ip:
+    static_ip: 192.168.29.1
+    gateway: 192.168.33.1
+    subnet: 255.255.0.0
+  #############################################################
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Homeanda-24Channelcontroller-01"
+    password: "jx8067929"
+    ap_timeout: 1min
+captive_portal:
+# status LED on ESP12f module (GPIO2 active-LOW)
+status_led:
+  pin:
+    number: GPIO2
+    inverted: True
+# WiFi sensor   
+sensor:
+  - platform: wifi_signal
+    name: "WiFi Signal Strength"
+    update_interval: 60s
+# REST API Web Server settings 
+web_server:
+  port: 80
+  version: 2 # NOTE: V2 embeds the css within the js file so is not required
+  local: True
+  js_url: ''
+  js_include: "./v2/www.js"
+
+
+# 74HC595D Drive
+sn74hc595:
+  - id: sn74hc595_hub
+    data_pin: GPIO14
+    clock_pin: GPIO12
+    latch_pin: GPIO4
+    sr_count: 3
+
+switch:
+  - platform: gpio
+    id: Relay_00
+    name: "Relay #00"
+    #icon: "mdi:lightning-bolt"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: 0
+      inverted: false
+
+  - platform: gpio
+    id: Relay_01
+    name: "Relay #01"
+    #icon: "mdi:lightning-bolt" 
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: 1
+      inverted: false
+
+  - platform: gpio
+    id: Relay_02
+    name: "Relay #02"
+    #icon: "mdi:lightning-bolt"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: 2
+      inverted: false
+
+  - platform: gpio
+    id: Relay_03
+    name: "Relay #03"
+    #icon: "mdi:lightning-bolt"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: 3
+      inverted: false
+
+  - platform: gpio
+    id: Relay_04
+    name: "Relay #04"
+    #icon: "mdi:lightning-bolt"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: 4
+      inverted: false
+
+  - platform: gpio
+    id: Relay_05
+    name: "Relay #05"
+    #icon: "mdi:lightning-bolt"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: 5
+      inverted: false
+
+  - platform: gpio
+    id: Relay_06
+    name: "Relay #06"
+    #icon: "mdi:lightning-bolt"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: 6
+      inverted: false
+
+  - platform: gpio
+    id: Relay_07
+    name: "Relay #07"
+    #icon: "mdi:lightning-bolt"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: 7
+      inverted: false
+
+  - platform: gpio
+    id: Relay_08
+    name: "Relay #08"
+    #icon: "mdi:lightning-bolt"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: 8
+      inverted: false
+
+  - platform: gpio
+    id: Relay_09
+    name: "Relay #09"
+    #icon: "mdi:lightning-bolt"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: 9
+      inverted: false
+
+  - platform: gpio
+    id: Relay_10
+    name: "Relay #10"
+    #icon: "mdi:lightning-bolt"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: 10
+      inverted: false
+
+  - platform: gpio
+    id: Relay_11
+    name: "Relay #11"
+    #icon: "mdi:lightning-bolt"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: 11
+      inverted: false
+
+  - platform: gpio
+    id: Relay_12
+    name: "Relay #12"
+    #icon: "mdi:lightning-bolt"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: 12
+      inverted: false
+
+  - platform: gpio
+    id: Relay_13
+    name: "Relay #13"
+    #icon: "mdi:lightning-bolt"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: 13
+      inverted: false
+
+  - platform: gpio
+    id: Relay_14
+    name: "Relay #14"
+    #icon: "mdi:lightning-bolt"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: 14
+      inverted: false
+
+  - platform: gpio
+    id: Relay_15
+    name: "Relay #15"
+    #icon: "mdi:lightning-bolt"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: 15
+      inverted: false
+
+  - platform: gpio
+    id: Relay_16
+    name: "Relay #16"
+    #icon: "mdi:lightning-bolt"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: 16
+      inverted: false
+
+  - platform: gpio
+    id: Relay_17
+    name: "Relay #17"
+    #icon: "mdi:lightning-bolt"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: 17
+      inverted: false
+
+  - platform: gpio
+    id: Relay_18
+    name: "Relay #18"
+    #icon: "mdi:lightning-bolt"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: 18
+      inverted: false
+
+  - platform: gpio
+    id: Relay_19
+    name: "Relay #19"
+    #icon: "mdi:lightning-bolt"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: 19
+      inverted: false
+
+  - platform: gpio
+    id: Relay_20
+    name: "Relay #20"
+    #icon: "mdi:lightning-bolt"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: 20
+      inverted: false
+
+  - platform: gpio
+    id: Relay_21
+    name: "Relay #21"
+    #icon: "mdi:lightning-bolt"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: 21
+      inverted: false
+
+  - platform: gpio
+    id: Relay_22
+    name: "Relay #22"
+    #icon: "mdi:lightning-bolt"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: 22
+      inverted: false
+
+  - platform: gpio
+    id: Relay_23
+    name: "Relay #23"
+    #icon: "mdi:lightning-bolt"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: 23
+      inverted: false
+# Define Color-shifting Action (Fast-on-off to switch LED color)
+#############################################################################
+## To avoid current shock, forbidden color-shifting except if light is ON. ##
+#############################################################################
+# switching scripts:
+script:
+  - id: RtR_00
+    mode: single
+    then:
+      if:
+        condition:
+          - switch.is_on: Relay_00
+        then:
+          - switch.turn_off: Relay_00
+          - delay: 700ms
+          - switch.turn_on: Relay_00
+  - id: RtR_01
+    mode: single
+    then:
+      if:
+        condition:
+          - switch.is_on: Relay_01
+        then:
+          - switch.turn_off: Relay_01
+          - delay: 700ms
+          - switch.turn_on: Relay_01
+  - id: RtR_02
+    mode: single
+    then:
+      if:
+        condition:
+          - switch.is_on: Relay_02
+        then:
+          - switch.turn_off: Relay_02
+          - delay: 700ms
+          - switch.turn_on: Relay_02
+  - id: RtR_03
+    mode: single
+    then:
+      if:
+        condition:
+          - switch.is_on: Relay_03
+        then:
+          - switch.turn_off: Relay_03
+          - delay: 700ms
+          - switch.turn_on: Relay_03
+  - id: RtR_04
+    mode: single
+    then:
+      if:
+        condition:
+          - switch.is_on: Relay_04
+        then:
+          - switch.turn_off: Relay_04
+          - delay: 700ms
+          - switch.turn_on: Relay_04
+  - id: RtR_05
+    mode: single
+    then:
+      if:
+        condition:
+          - switch.is_on: Relay_05
+        then:
+          - switch.turn_off: Relay_05
+          - delay: 700ms
+          - switch.turn_on: Relay_05
+  - id: RtR_06
+    mode: single
+    then:
+      if:
+        condition:
+          - switch.is_on: Relay_06
+        then:
+          - switch.turn_off: Relay_06
+          - delay: 700ms
+          - switch.turn_on: Relay_06
+  - id: RtR_07
+    mode: single
+    then:
+      if:
+        condition:
+          - switch.is_on: Relay_07
+        then:
+          - switch.turn_off: Relay_07
+          - delay: 700ms
+          - switch.turn_on: Relay_07
+  - id: RtR_08
+    mode: single
+    then:
+      if:
+        condition:
+          - switch.is_on: Relay_08
+        then:
+          - switch.turn_off: Relay_08
+          - delay: 700ms
+          - switch.turn_on: Relay_08
+  - id: RtR_09
+    mode: single
+    then:
+      if:
+        condition:
+          - switch.is_on: Relay_09
+        then:
+          - switch.turn_off: Relay_09
+          - delay: 700ms
+          - switch.turn_on: Relay_09
+  - id: RtR_10
+    mode: single
+    then:
+      if:
+        condition:
+          - switch.is_on: Relay_10
+        then:
+          - switch.turn_off: Relay_10
+          - delay: 700ms
+          - switch.turn_on: Relay_10
+  - id: RtR_11
+    mode: single
+    then:
+      if:
+        condition:
+          - switch.is_on: Relay_11
+        then:
+          - switch.turn_off: Relay_11
+          - delay: 700ms
+          - switch.turn_on: Relay_11
+  - id: RtR_12
+    mode: single
+    then:
+      if:
+        condition:
+          - switch.is_on: Relay_12
+        then:
+          - switch.turn_off: Relay_12
+          - delay: 700ms
+          - switch.turn_on: Relay_12
+  - id: RtR_13
+    mode: single
+    then:
+      if:
+        condition:
+          - switch.is_on: Relay_13
+        then:
+          - switch.turn_off: Relay_13
+          - delay: 700ms
+          - switch.turn_on: Relay_13
+  - id: RtR_14
+    mode: single
+    then:
+      if:
+        condition:
+          - switch.is_on: Relay_14
+        then:
+          - switch.turn_off: Relay_14
+          - delay: 700ms
+          - switch.turn_on: Relay_14
+  - id: RtR_15
+    mode: single
+    then:
+      if:
+        condition:
+          - switch.is_on: Relay_15
+        then:
+          - switch.turn_off: Relay_15
+          - delay: 700ms
+          - switch.turn_on: Relay_15
+  - id: RtR_16
+    mode: single
+    then:
+      if:
+        condition:
+          - switch.is_on: Relay_16
+        then:
+          - switch.turn_off: Relay_16
+          - delay: 700ms
+          - switch.turn_on: Relay_16
+  - id: RtR_17
+    mode: single
+    then:
+      if:
+        condition:
+          - switch.is_on: Relay_17
+        then:
+          - switch.turn_off: Relay_17
+          - delay: 700ms
+          - switch.turn_on: Relay_17
+  - id: RtR_18
+    mode: single
+    then:
+      if:
+        condition:
+          - switch.is_on: Relay_18
+        then:
+          - switch.turn_off: Relay_18
+          - delay: 700ms
+          - switch.turn_on: Relay_18
+  - id: RtR_19
+    mode: single
+    then:
+      if:
+        condition:
+          - switch.is_on: Relay_19
+        then:
+          - switch.turn_off: Relay_19
+          - delay: 700ms
+          - switch.turn_on: Relay_19
+  - id: RtR_20
+    mode: single
+    then:
+      if:
+        condition:
+          - switch.is_on: Relay_20
+        then:
+          - switch.turn_off: Relay_20
+          - delay: 700ms
+          - switch.turn_on: Relay_20
+  - id: RtR_21
+    mode: single
+    then:
+      if:
+        condition:
+          - switch.is_on: Relay_21
+        then:
+          - switch.turn_off: Relay_21
+          - delay: 700ms
+          - switch.turn_on: Relay_21
+  - id: RtR_22
+    mode: single
+    then:
+      if:
+        condition:
+          - switch.is_on: Relay_22
+        then:
+          - switch.turn_off: Relay_22
+          - delay: 700ms
+          - switch.turn_on: Relay_22
+  - id: RtR_23
+    mode: single
+    then:
+      if:
+        condition:
+          - switch.is_on: Relay_23
+        then:
+          - switch.turn_off: Relay_23
+          - delay: 700ms
+          - switch.turn_on: Relay_23
+# Define Delayed-OFF Action
+#############################################################################
+##                     Only if the light is currently ON                   ##
+#############################################################################
+  - id: DF_ALL
+    mode: single
+    then:
+      - delay: 30s
+      - switch.turn_off: Relay_00
+      - switch.turn_off: Relay_01
+      - switch.turn_off: Relay_02
+      - switch.turn_off: Relay_03
+      - switch.turn_off: Relay_04
+      - switch.turn_off: Relay_05
+      - switch.turn_off: Relay_06
+      - switch.turn_off: Relay_07
+      - switch.turn_off: Relay_08
+      - switch.turn_off: Relay_09
+      - switch.turn_off: Relay_10
+      - switch.turn_off: Relay_11
+      - switch.turn_off: Relay_12
+      - switch.turn_off: Relay_13
+      - switch.turn_off: Relay_14
+      - switch.turn_off: Relay_15
+      - switch.turn_off: Relay_16
+      - switch.turn_off: Relay_17
+      - switch.turn_off: Relay_18
+      - switch.turn_off: Relay_19
+      - switch.turn_off: Relay_20
+      - switch.turn_off: Relay_21
+      - switch.turn_off: Relay_22
+      - switch.turn_off: Relay_23
+# switch button that exposed to HA
+button:
+  - platform: template
+    id: Relay_00_alt_color
+    name: "Change color #00"
+    disabled_by_default: False # If set to true -> Default hidden in frontend and be added manually
+    on_press:
+      then:
+        - script.execute: RtR_00
+  - platform: template
+    id: Relay_01_alt_color
+    name: "Change color #01"
+    disabled_by_default: False
+    on_press:
+      then:
+        - script.execute: RtR_01
+  - platform: template
+    id: Relay_02_alt_color
+    name: "Change color #02"
+    disabled_by_default: False
+    on_press:
+      then:
+        - script.execute: RtR_02
+  - platform: template
+    id: Relay_03_alt_color
+    name: "Change color #03"
+    disabled_by_default: False
+    on_press:
+      then:
+        - script.execute: RtR_03
+  - platform: template
+    id: Relay_04_alt_color
+    name: "Change color #04"
+    disabled_by_default: False
+    on_press:
+      then:
+        - script.execute: RtR_04
+  - platform: template
+    id: Relay_05_alt_color
+    name: "Change color #05"
+    disabled_by_default: False
+    on_press:
+      then:
+        - script.execute: RtR_05
+  - platform: template
+    id: Relay_06_alt_color
+    name: "Change color #06"
+    disabled_by_default: False
+    on_press:
+      then:
+        - script.execute: RtR_06
+  - platform: template
+    id: Relay_07_alt_color
+    name: "Change color #07"
+    disabled_by_default: False
+    on_press:
+      then:
+        - script.execute: RtR_07
+  - platform: template
+    id: Relay_08_alt_color
+    name: "Change color #08"
+    disabled_by_default: False
+    on_press:
+      then:
+        - script.execute: RtR_08
+  - platform: template
+    id: Relay_09_alt_color
+    name: "Change color #09"
+    disabled_by_default: False
+    on_press:
+      then:
+        - script.execute: RtR_09
+  - platform: template
+    id: Relay_10_alt_color
+    name: "Change color #10"
+    disabled_by_default: False
+    on_press:
+      then:
+        - script.execute: RtR_10
+  - platform: template
+    id: Relay_11_alt_color
+    name: "Change color #11"
+    disabled_by_default: False
+    on_press:
+      then:
+        - script.execute: RtR_11
+  - platform: template
+    id: Relay_12_alt_color
+    name: "Change color #12"
+    disabled_by_default: False
+    on_press:
+      then:
+        - script.execute: RtR_12
+  - platform: template
+    id: Relay_13_alt_color
+    name: "Change color #13"
+    disabled_by_default: False
+    on_press:
+      then:
+        - script.execute: RtR_13
+  - platform: template
+    id: Relay_14_alt_color
+    name: "Change color #14"
+    disabled_by_default: False
+    on_press:
+      then:
+        - script.execute: RtR_14
+  - platform: template
+    id: Relay_15_alt_color
+    name: "Change color #15"
+    disabled_by_default: False
+    on_press:
+      then:
+        - script.execute: RtR_15
+  - platform: template
+    id: Relay_16_alt_color
+    name: "Change color #16"
+    disabled_by_default: False
+    on_press:
+      then:
+        - script.execute: RtR_16
+  - platform: template
+    id: Relay_17_alt_color
+    name: "Change color #17"
+    disabled_by_default: False
+    on_press:
+      then:
+        - script.execute: RtR_17
+  - platform: template
+    id: Relay_18_alt_color
+    name: "Change color #18"
+    disabled_by_default: False
+    on_press:
+      then:
+        - script.execute: RtR_18
+  - platform: template
+    id: Relay_19_alt_color
+    name: "Change color #19"
+    disabled_by_default: False
+    on_press:
+      then:
+        - script.execute: RtR_19
+  - platform: template
+    id: Relay_20_alt_color
+    name: "Change color #20"
+    disabled_by_default: False
+    on_press:
+      then:
+        - script.execute: RtR_20
+  - platform: template
+    id: Relay_21_alt_color
+    name: "Change color #21"
+    disabled_by_default: False
+    on_press:
+      then:
+        - script.execute: RtR_21
+  - platform: template
+    id: Relay_22_alt_color
+    name: "Change color #22"
+    disabled_by_default: False
+    on_press:
+      then:
+        - script.execute: RtR_22
+  - platform: template
+    id: Relay_23_alt_color
+    name: "Change color #23"
+    disabled_by_default: False
+    on_press:
+      then:
+        - script.execute: RtR_23
+
+  - platform: template
+    id: Delay_OFF_ALL
+    name: "Delay OFF ALL"
+    disabled_by_default: False
+    on_press:
+      then:
+        - script.execute: DF_ALL
+  
